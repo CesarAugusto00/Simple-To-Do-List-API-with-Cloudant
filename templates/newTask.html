@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<body>
+    <center>
+        <h1>Add New Task</h1>
+    </center>
+    <div class="container mt-5 d-flex justify-content-center">
+        <div class="card p-4 shadow mx-auto" style="width: 30rem;">
+          <div class="card-body d-flex flex-column">
+            
+            <form method="POST">
+                {{ form.hidden_tag() }}  <!-- CSRF protection -->
+                
+                <p>
+                    {{ form.title.label(class="form-label") }} <br>
+                    {{ form.title(class="form-control") }}  <!-- Input field for title -->
+                </p>
+                
+                <p>
+                    {{ form.description.label(class="form-label") }} <br>
+                    {{ form.description(class="form-control") }}  <!--Text area for description -->
+                </p>
+        
+                <p>{{ form.submit(class="btn btn-success") }}</p>  
+            </form>
+            <!-- Bottom-right button -->
+          </div>
+        </div>
+    </div>
+    
+</body>
+{% endblock %}

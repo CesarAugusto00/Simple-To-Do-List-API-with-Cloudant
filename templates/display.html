@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<center> 
+
+<div class="container mt-5">
+    <h2 class="mb-4">To-Do List</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Date Created</th>
+                <th>Status</th>
+                <th>Mark as Completed</th>
+                <th>Delte</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.task_title }}</td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.date_created }}</td>
+                <td>
+                    {% if task.done %}
+                        <span class="badge bg-success">Completed</span>
+                    {% else %}
+                        <span class="badge bg-warning">Pending</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if not task.done %}
+                        <a href="{{ url_for('mark_done', task_id=task['_id']) }}" class="btn btn-success btn-sm">Mark Done</a>
+                    {% else %}
+                        <button class="btn btn-secondary btn-sm" disabled>Completed</button>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ url_for('delete_task', task_id=task['_id']) }}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</center>
+
+
+{% endblock %}
